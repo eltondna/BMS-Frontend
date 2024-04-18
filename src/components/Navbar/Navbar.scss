@@ -1,0 +1,51 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(to right,#E0E0E0,#E9E9E9); 
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #636060;
+    p{
+        padding: 0px 20px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+   
+    div{        
+        display: flex;
+            align-items: center;
+        .pop{
+            display: flex;
+            position: relative;
+            width: 100px;
+            background: #E9E9E9;
+            border: 2px solid#636060;
+            justify-content: space-between;
+            border-radius: 10px;
+            margin-right: 10px;
+            .icon{
+                width: 30px;;
+                height: 30px; 
+                border: #636060;   
+            }
+            .menu{
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 35px;
+                width: 100px;
+                background-color:transparent ;
+                .div{
+                    align-self: self-start;
+                    font-weight: bold;
+                }
+            }
+
+        }
+        
+    }
+
+}

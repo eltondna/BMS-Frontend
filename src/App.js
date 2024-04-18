@@ -1,24 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
-
+import './index.scss';
+import { createBrowserRouter,Navigate,Outlet,RouterProvider } from "react-router-dom";
+import LeftBar from './components/LeftBar/LeftBar';
+import Navbar from './components/Navbar/Navbar';
+import Login from './Login/Login';
+import { RoutesConfig } from './routes';
+import NotMatch from './NotMatch/NotMatch';
 function App() {
+  let user = true;
+  const ProtectedRoutes = ({children})=>{
+    if (user === false){
+      return <Navigate to="/login"/>
+    }
+    return children
+  }
+  const Layout = ()=>{
+    return (
+        <div style={{display: 'flex'}}>
+          <LeftBar/>
+          <div style={{display: 'flex' , flex: 7}}>
+            <div style={{display: 'flex', flexDirection: 'column', width:"100%"}}>
+              <Navbar/>
+              <Outlet/>
+            </div>
+          </div>
+        </div>
+    )
+  }
+  const router = createBrowserRouter([
+    {
+      path: "/login",
+      element: <Login />
+    },
+
+    {
+      path: "/",
+      element: <ProtectedRoutes>
+                <Layout/>
+               </ProtectedRoutes>,
+      children: [
+        ...RoutesConfig
+      ]
+    },
+    {
+      path: "*",
+      element: <NotMatch/>
+    }
+  ]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
