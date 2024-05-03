@@ -2,7 +2,7 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    background-color: #f0d1d1;
+    background: radial-gradient(circle at 10% 20%, rgb(163, 175, 243) 0%, rgb(220, 182, 232) 100.2%);
     justify-content: center;
     align-items: center;
     position: relative;
@@ -15,7 +15,6 @@
         width: 300px;
         height: 300px;
         border-radius: 50%;
-
     }
     .circleRightDown{
         position: absolute;
@@ -69,10 +68,11 @@
         .inputfield{
             display: flex;
             flex-direction: column;
-            gap: 20px;
             align-items: center;
+
             .field{
                 border-radius: 10px;
+                margin-top: 20px;
                 width: 70%;
                 display: flex;
                 justify-content: space-between;
@@ -81,7 +81,12 @@
                 -webkit-box-shadow: 0px 6px 5px -2px rgba(0,0,0,0.69);
                 -moz-box-shadow: 0px 6px 5px -2px rgba(0,0,0,0.69);
                 box-shadow: 0px 6px 5px -2px rgba(0,0,0,0.69);
+                margin-bottom: 10px;
                 input{
+                    &::placeholder{
+                        color: #7C73C3;
+                        font-weight: bold;
+                    }
                     width: 80%;
                     padding: 10px;
                     border-radius: 10px;
@@ -91,50 +96,91 @@
                 .icon{
                     width: 30px;
                     height: 30px;
-                    color: #F0D1D1;
+                    color: #7C73C3;
                 }
                 .empty::placeholder{
-                    color: red;
+                    color: rgba(247, 95, 95, 0.845);
                 }
             }
+
+            h3{
+                color: rgba(247, 95, 95, 0.845);
+            }
+
            
             button{
                 display: flex;
-                -webkit-box-shadow: 0px 6px 5px -2px rgba(0,0,0,0.69);
-                -moz-box-shadow: 0px 6px 5px -2px rgba(0,0,0,0.69);
-                box-shadow: 0px 6px 5px -2px rgba(0,0,0,0.69);
+                // -webkit-box-shadow: 0px 6px 5px -2px rgba(0,0,0,0.69);
+                // -moz-box-shadow: 0px 6px 5px -2px rgba(0,0,0,0.69);
+                // box-shadow: 0px 6px 5px -2px rgba(0,0,0,0.69);
                 padding: 10px 20px;
                 border: none;
                 border-radius: 10px;
                 cursor: pointer;
-                background: white;
-                color: #636060 ;
-                span{
-                    cursor: pointer;
-                    display: flex;
-                    justify-content: center;
-                    position: relative;
-                    transition: 0.5s;
-                    opacity: 0;
-                    &:after {
-                        content: '\00bb';
-                        position: absolute;
-                        opacity: 1;
-                        right: -20px;
-                        transition: 0.5s;
-                      }
-                    }
-                  
-                    &:hover {
-                      span {
-                        padding-right: 20px;
-                        opacity: 1;
-                        &:after {
-                          right: 0;
-                        }
-                      }
+                background: transparent;
+                color: #7C73C3 ;
+                font-weight: bold;
+                font-size: 20px;
+                position: relative;
+                transition: all 1s;
+                overflow: hidden;
+
+                &::before{
+                    content: "";
+                    position: absolute;
+                    width: 15%;
+                    height: 35%;
+                    border-radius: 50%;
+                    background-color: #FFF;
+                    left: -25%;
+                    box-shadow: -40px 0px 0px #FFF;
+                    transition: all 0.5s;
+                    
                 }
-               
+                &::after{
+                    content: "";
+                    position: absolute;
+                    width: 15%;
+                    height: 35%;
+                    border-radius: 50%;
+                    background-color: #FFF;
+                    right: -25%;
+                    box-shadow: 40px 0px 0px #FFF;
+                    transition: all 0.5s;
+                }
+
+                &:hover::before{
+                    left: 40%;
+                    opacity: 0;
+                    // transform: scale(0);
+                }
+                &:hover::after{
+                    right: 40%;
+                    opacity: 0;
+                    // transform: scale(0);
+                }
+                span{
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    background: radial-gradient(circle at 10% 20%, rgb(163, 175, 243) 0%, rgb(220, 182, 232) 100.2%);;
+                    border-radius: 10px;
+                    transform: scale(0);
+                    transition: all 0.5ms;
+                }
+
+                &:hover{
+                    color: white;
+                    transition-delay: 0.4s;
+                }
+
+                &:hover span{
+                    transform: scale(1);
+                    transition-delay: 0.5s;
+                    z-index: -1;
+                }
             }
         }    
     }

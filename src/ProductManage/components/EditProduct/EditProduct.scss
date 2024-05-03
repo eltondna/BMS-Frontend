@@ -1,0 +1,104 @@
+.editproduct{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 60%;
+    min-width: 150px;
+    min-height: 250px;
+    border-radius: 10px;
+    background: #FFF;
+    color: #8989BB;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    overflow: auto;
+    .header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 5%;
+        padding: 4%;
+        font-weight: bold;
+        font-size: 22px;
+    }
+    .icon{
+        cursor: pointer;
+    }
+    .textEditor{
+        display: flex;
+        flex-direction: column;
+        gap: 8%;
+        border-radius: 10px;
+        height: 100%;
+        .field, .xl-field, .pic-field{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            padding-top: 30px;
+            position: relative;
+            color: #8989BB;
+            label{
+                width: 15%;
+                padding-left: 5%;
+                font-weight: bold;
+            }
+            input, textarea{
+                width: 75%;
+                margin-right: 3%;
+                border-radius: 7px;
+                padding: 10px;
+                border-top: 3px solid #A5A4CB;
+                border-left: 3px solid #A5A4CB;
+                border-bottom:3px solid #8989BB;
+                border-right: 3px solid #A5A4CB;
+                color: #8989BB;
+                font-weight: bold;
+            }
+            .PicUpload{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 3%;
+                width: 75%;
+                position: relative;
+                .image{
+                    width: 100%;                    
+                    object-fit: cover;
+                    border-radius: 10px;
+                    padding: 10px;
+                }
+                input{
+                    position: absolute;
+                    opacity: 0;
+                    width: 95%;
+                    height: 90%;
+                    top:0;
+                    left: 0;
+                    right: 0;
+                    cursor: pointer;
+                }
+            }
+            .submit{
+                padding: 10px 30px;
+                border-radius: 5px;
+                background: transparent;
+                cursor: pointer;
+                border: none;
+                color: white;
+                background: linear-gradient(to 
+                left,#DDDDEE ,#8989BB);
+                font-size: 15px;
+                margin-bottom: 20px;
+            }
+            .content{
+                display: flex;
+                width: 75%;
+                height: 100%;
+                margin-right: 3%;
+                border-radius: 7px;
+                padding: 10px 10px;
+            }
+        }        
+    }
+
+}
