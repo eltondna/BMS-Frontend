@@ -51,7 +51,7 @@ const ProductList = ()=>{
                 {
                     data.map(product => (
                         <ProductListItem
-                         key={product._id}
+                         key={product.id}
                          product={product}
                          setOpenEdit={setOpenEdit}
                          setEditProduct={setEditProduct}

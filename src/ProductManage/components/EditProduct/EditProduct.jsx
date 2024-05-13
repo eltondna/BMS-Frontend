@@ -19,7 +19,7 @@ const EditProduct =({setOpenEdit, product})=>{
     
     const editProductAction = async ()=>{
         const formData = new FormData()
-        formData.append('id', product._id);
+        formData.append('id', product.id);
         formData.append('name', name);
         formData.append('brief', brief);
         formData.append('description', description);

@@ -19,7 +19,7 @@ const ProductListItem = ({product, setOpenEdit, setEditProduct})=>{
     }
     // Delete Action
     const deleteProductAction = async ()=>{
-        return await axios.post(BASE_URL + '/admin/product/delete', {id: product._id});
+        return await axios.post(BASE_URL + '/admin/product/delete', {id: product.id});
     }
     // Delete Mutation
     const mutation = useMutation({

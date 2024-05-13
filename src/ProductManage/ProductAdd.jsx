@@ -8,7 +8,6 @@ import {
 } from '@tanstack/react-query'
 import Notification from "../components/Notification/Notification";
 
-
 const ProductAdd = ()=>{
     const [name, setName] = useState("");
     const [brief, setBrief] = useState("");
