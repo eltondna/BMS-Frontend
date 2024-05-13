@@ -31,9 +31,10 @@ const Login = ()=>{
         password: password
       }
       try{
-        const {data} = await axios.post(BASE_URL + "/admin/user/login",payload);
-        if (data.result === 0){
+        const {data} = await axios.post(BASE_URL + "/admin/auth/login",payload);
+        if (data.result === 1){
           // The Token is set to localstorage in the axios.config.js using an interceptor
+          console.log(data.data)
           await localStorage.setItem('user', JSON.stringify(data.data))
           handleUserUpdate(data.data)
           navigate('/');

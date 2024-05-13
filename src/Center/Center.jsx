@@ -41,10 +41,10 @@ const Center = ()=>{
         mutationFn: updateProfileAction,
         // We can returned the renewed data directly from backend
         // no need to pass the payload to the mutation function
-        onSuccess: (data, variable) => {
+        onSuccess: async(data) => {
         // Invalidate and refetch
-        handleUserUpdate(variable)
-        queryClient.invalidateQueries({ queryKey: ['user'] })
+            const res = await axios.post(BASE_URL + '/admin/user/get')
+            handleUserUpdate(res.data.data)
         },
     })
 
@@ -54,15 +54,7 @@ const Center = ()=>{
             Notification('Username cannot be null', 'warning')
             return;
         }
-        const payload = {
-            username: username,
-            gender: gender,
-            introduction: introduction,
-            role: currentUser.role,
-            avatar: currentUser.avatar,
-            _id: currentUser._id
-        }
-        await mutation.mutate(payload)
+        await mutation.mutate()
         setImageURL('')
     }
 
@@ -78,19 +70,6 @@ const Center = ()=>{
         };
         reader.readAsDataURL(file);
     }
-
-    const { isPending, isError, data, error } = useQuery({
-        queryKey: ['user'],
-        queryFn: async ()=>{
-            const res = await axios.post(BASE_URL + '/admin/user/get')
-            return res.data.data
-        }
-    })
-    
-    if (isPending){
-        return <h2 style={{padding: '20px', color: '#666'}}>Loading...</h2>
-    }
-
 
     return (
         <div className="center">
@@ -133,7 +112,9 @@ const Center = ()=>{
 
                         <div className="field">
                             <label htmlFor="gender">性别</label>
-                            <select className='select' onChange={(e)=>handleGender(e)}>
+                            <select className='select' 
+                                    onChange={(e)=>handleGender(e)} 
+                                    value={gender}>
                                 <option value={0}>保密</option>
                                 <option value={1}>男性</option>
                                 <option value={2}>女性</option>

@@ -1,19 +1,16 @@
 import {
-    useMutation,
-    useQueryClient,
     useQuery
 } from '@tanstack/react-query';
 import { useState } from 'react';
 import axios from 'axios';
-import { BASE_URL } from '../../config';
-import ProductListItem from "../components/ProductListItem/ProductListItem"
-import "../styles/ProductList.scss"
-import EditProduct from '../components/EditProduct/EditProduct';
+import { BASE_URL } from '../config';
+import ProductListItem from "./components/ProductListItem/ProductListItem"
+import "./ProductList.scss"
+import EditProduct from "./components/EditProduct/EditProduct"
 
 const ProductList = ()=>{
     const [openEdit, setOpenEdit] = useState(false);
     const [editProduct, setEditProduct] = useState('');
-    const queryClient = useQueryClient();
 
     const { isPending, isError, data, error } = useQuery({
         queryKey: ['productAll'],
@@ -61,7 +58,6 @@ const ProductList = ()=>{
                          />
                     ))
                 }
-
                 </div>
             </div>
 

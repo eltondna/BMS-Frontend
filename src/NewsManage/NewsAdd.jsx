@@ -1,11 +1,11 @@
-import '../styles/NewsAdd.scss'
+import './NewsAdd.scss'
 import { useState } from 'react'
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import Notification from '../../components/Notification/Notification';
+import Notification from '../components/Notification/Notification';
 import axios from 'axios';
-import { BASE_URL } from '../../config';
+import { BASE_URL } from '../config';
 
 const NewsAdd = ()=>{
     const [title, setTitle] = useState('');

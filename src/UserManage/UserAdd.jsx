@@ -1,64 +1,86 @@
 import './UserAdd.scss'
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
-import { useState, useContext } from 'react';
+import { useState, useContext, useReducer } from 'react';
 import axios from 'axios'
 import {BASE_URL} from "../config";
 import Notification from '../components/Notification/Notification';
 
 const UserAdd = ()=>{
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('')
-    const [role, setRole] = useState(0)
-    const [introduction, setIntroduction] = useState('')
     const [imageURL, setImageURL] = useState('')
-    const [filePath, setFilePath] = useState('')
+    const defaultState = {
+        username: '',
+        password: '',
+        role: 0,
+        introduction: '',
+        filePath: ''
+    }
+    const reducer = (prevState, action)=>{
+        switch (action.type){
+            case 'SET_USERNAME':
+                return {...prevState, username : action.payload}
+            case 'SET_PASSWORD':
+                return {...prevState, password : action.payload}
+            case 'SET_ROLE':
+                return {...prevState, role : action.payload}
+            case 'SET_INTRODUCTION':
+                return {...prevState, introduction: action.payload} 
+            case 'SET_FILEPATH':
+                return {...prevState, filePath: action.payload}
+            case 'RESET':
+                return defaultState
+            default: 
+                return prevState
+        }
+    }
 
+    const [state, dispatch] = useReducer(reducer, defaultState)
     function displayImage(file) {
         if (!file){
             console.log("Action Cancelled")
             return;
         }
         const reader = new FileReader();
-        setFilePath(file)
+        dispatch({type: 'SET_FILEPATH', payload: file})
         reader.onload = function (e) {
           setImageURL(e.target.result);
         };
         reader.readAsDataURL(file);
     }
+
     const handleClick = async ()=>{
-        if (username === ''){
+        if (state.username === ''){
             return Notification("Please enter username", "warning")
-        }else if (password === ''){
+        }else if (state.password === ''){
             return Notification("Please enter password", "warning")
-        }else if (role === 0){
+        }else if (state.role === 0){
             return Notification("Please select user role", "warning")
+        }else if (state.filePath === ''){
+            return Notification("Please select a profile picture", "warning")
         }
-
-        const formData = new FormData()
-        formData.append("username", username);
-        formData.append("password", password);
-        formData.append("role", role);
-        formData.append("introduction", introduction);
-        if (filePath !== '') formData.append("file", filePath);
-        try{
-            const {data} = await axios.post(BASE_URL + "/admin/user/create",formData,{
-                headers:{
-                    "Content-Type": "multipart/form-data"
-            }})
-            console.log(data.result)
-            setUsername("");
-            setPassword("");
-            setRole(0);
-            setIntroduction("");
-            setImageURL("");
-            setFilePath("");
-            Notification("User created successfully !", "success")
-        }catch (err){
-            Notification("Fail to create user !", "error")
-            console.log(err)
-        }
+        else{
+            const formData = new FormData()
+            formData.append("username", state.username);
+            formData.append("password", state.password);
+            formData.append("role", state.role);
+            formData.append("introduction", state.introduction);
+            if (state.filePath !== '') formData.append("file", state.filePath);
+            console.log(state.filePath)
+            try{
+                const {data} = await axios.post(BASE_URL + "/admin/user/create",formData,{
+                    headers:{
+                        "Content-Type": "multipart/form-data"
+                }})
+                console.log(data.result)
+                setImageURL("");
+                Notification("User created successfully !", "success")
+            }catch (err){
+                Notification("Fail to create user !", "error")
+                console.log(err)
+            }
+            dispatch({type: 'RESET'})
     }
-
+    }
+    
     return (
         <div className="UserAdd">
             <div className='container'>
@@ -77,22 +99,22 @@ const UserAdd = ()=>{
                                     <label htmlFor="username">用户名</label>
                                     <input type="text" name="username" 
                                     placeholder="Username . . . "
-                                    onChange={(e) => setUsername(e.target.value)}
-                                    value={username}/>
+                                    onChange={(e) => {dispatch({type: 'SET_USERNAME', payload: e.target.value})}}
+                                    value={state.username}/>
                         </div>
 
                         <div className="field">
-                                    <label htmlFor="username">密码</label>
+                                    <label htmlFor="password">密码</label>
                                     <input type="text" name="password" 
                                     placeholder="Password . . ."
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    value={password}/>
+                                    onChange={(e) => {dispatch({type: 'SET_PASSWORD', payload: e.target.value})}}
+                                    value={state.password}/>
                         </div>
                         <div className="field">
-                                <label htmlFor="gender">角色</label>
-                                <select className='select' 
-                                onChange={(e)=>setRole(e.target.value)}
-                                value={role}>
+                                <label htmlFor="role">角色</label>
+                                <select className='select' name='role'
+                                onChange={(e)=>{dispatch({type: 'SET_ROLE', payload: e.target.value})}}
+                                value={state.role}>
                                     <option value={0} >選擇</option>
                                     <option value={1}>管理員</option>
                                     <option value={2}>編輯</option>
@@ -103,8 +125,8 @@ const UserAdd = ()=>{
                                 <textarea name="introduction" 
                                 className='intro' 
                                 placeholder="..."
-                                value={introduction}
-                                onChange={(e)=>setIntroduction(e.target.value)}></textarea>
+                                value={state.introduction}
+                                onChange={(e)=>{dispatch({type: 'SET_INTRODUCTION', payload: e.target.value})}}></textarea>
                         </div>
 
                         <div className="field">

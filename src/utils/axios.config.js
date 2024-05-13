@@ -1,6 +1,5 @@
 import axios from 'axios'
 // Add a request interceptor
-
 axios.interceptors.request.use(function (config) {
     // Do something before request is sent
     const token = localStorage.getItem("token")
@@ -20,7 +19,6 @@ axios.interceptors.response.use(function (response) {
     // Do something with response data
     const {authorization} = response.headers
     authorization && localStorage.setItem('token', authorization)
-
     return response;
   }, function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger

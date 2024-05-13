@@ -13,17 +13,16 @@ import {
 const EditNews = ({news, setOpenEdit})=>{
     const [title, setTitle] = useState(news.title)
     const [content, setContent] = useState(news.content)
-    const [category, setCategory] = useState(news.category)
+    const [genre, setGenre] = useState(news.genre)
     const [imageURL, setImageURL] = useState('');
     const [filePath, setFilePath] = useState('');
-    
     const queryClient = useQueryClient();
     const editNews = async()=>{
         const formData = new FormData()
-        formData.append('id', news._id);
+        formData.append('id', news.id);
         formData.append('title', title);
         formData.append('content', content);
-        formData.append('category', category);
+        formData.append('genre', genre);
         if (filePath !== "")
             formData.append('file', filePath);
         else
@@ -46,7 +45,8 @@ const EditNews = ({news, setOpenEdit})=>{
     })
 
     const handleClick = ()=>{
-        if (title === "" || content === "" || category === "" ){
+        console.log(typeof(genre))
+        if (title === "" || content === "" || genre === 0 ){
             return Notification("請填寫所有欄位", "warning")
         }
         mutation.mutate()
@@ -83,7 +83,7 @@ const EditNews = ({news, setOpenEdit})=>{
 
                     <div className="field">
                         <label htmlFor="select">類型</label>
-                        <select className='select' value={category} onChange={(e) => setCategory(e.target.value)}>
+                        <select className='select' value={genre} onChange={(e) => setGenre(Number(e.target.value))}>
                             <option value={0}>選擇</option>
                             <option value={1}>最新動態</option>
                             <option value={2}>典型案例</option>

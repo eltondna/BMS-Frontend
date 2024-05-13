@@ -1,22 +1,21 @@
 import "./UserListItem.scss"
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
-import {BASE_URL} from "../../config"
+import {BASE_URL} from "../../../config"
 import {useContext} from "react";
-import {UserContext} from "../../App"
+import {UserContext} from "../../../App"
 import axios from 'axios'
 import {
     useMutation,
     useQueryClient
 } from '@tanstack/react-query'
 
-import Notification from "../Notification/Notification";
+import Notification from "../../../components/Notification/Notification";
 const UserListItem = ({user, setOpenEdit, setEditUser })=>{
     const {currentUser} = useContext(UserContext)
     const queryClient = useQueryClient();
-
     const RemoveUser = async()=>{
         const payload = {
-            id: user._id
+            id: user.id
         }
         return await axios.post(BASE_URL + '/admin/user/delete', payload);
     }
@@ -58,8 +57,12 @@ const UserListItem = ({user, setOpenEdit, setEditUser })=>{
                 }
             </div>
             <div className="field">
-                <button className="edit" onClick={()=>handleEdit()}>編輯</button>
-                {user._id !== currentUser.id && <button className="remove" onClick={handleRemove}>删除</button>}
+                {user.id !== currentUser.id &&
+                <>
+                    <button className="edit" onClick={()=>handleEdit()}>編輯</button>
+                    <button className="remove" onClick={handleRemove}>删除</button>
+                </>
+                }
             </div>
         </div>
     )

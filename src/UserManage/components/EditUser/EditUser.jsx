@@ -1,8 +1,8 @@
 import './EditUser.scss'
 import { useState } from 'react';
-import Notification from "../Notification/Notification"
+import Notification from "../../../components/Notification/Notification.jsx"
 import axios from 'axios';
-import { BASE_URL } from '../../config';
+import { BASE_URL } from '../../../config';
 import {
     useMutation,
     useQueryClient
@@ -15,11 +15,10 @@ const EditUser = ({setOpenEdit, user, setUser})=>{
     const [introduction, setIntroduction] = useState(user.introduction || '')
     const queryClient = useQueryClient();
 
-
     // Upload Action
     const updateProfileAction = async()=>{
         const payload = {
-            id: user._id,
+            id: user.id,
             username,
             role,
             introduction

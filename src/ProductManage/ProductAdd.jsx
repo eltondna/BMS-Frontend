@@ -1,12 +1,12 @@
-import "../styles/ProductAdd.scss"
+import "./ProductAdd.scss"
 import axios from "axios";
 import { useState } from "react";
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
-import { BASE_URL } from "../../config";
+import { BASE_URL } from "../config";
 import {
     useMutation,
 } from '@tanstack/react-query'
-import Notification from "../../components/Notification/Notification";
+import Notification from "../components/Notification/Notification";
 
 
 const ProductAdd = ()=>{

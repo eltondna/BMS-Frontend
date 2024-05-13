@@ -1,5 +1,5 @@
 import "./UserList.scss"
-import UserListItem from "../components/UserListItem/UserListItem";
+import UserListItem from "./components/UserListItem/UserListItem";
 import axios from "axios";
 import { BASE_URL } from "../config";
 import {
@@ -7,7 +7,7 @@ import {
     useQueryClient,
     useQuery
 } from '@tanstack/react-query'
-import EditUser from "../components/EditUser/EditUser";
+import EditUser from "./components/EditUser/EditUser";
 import { useRef, useState } from "react";
 
 

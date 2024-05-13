@@ -1,15 +1,15 @@
-import { BASE_URL } from "../../config";
+import { BASE_URL } from "../config";
 import axios from "axios";
-import "../styles/NewsList.scss";
+import "./NewsList.scss";
 import {
     useMutation,
     useQueryClient,
     useQuery
 } from '@tanstack/react-query'
-import NewsListItem from "../components/NewsListItem/NewsListItem";
-import EditNews from "../components/EditNews/EditNews";
+import NewsListItem from "./components/NewsListItem/NewsListItem";
+import EditNews from "./components/EditNews/EditNews";
 import { useState } from "react";
-import PreviewNews from "../components/PreviewNews/PreviewNews";
+import PreviewNews from "./components/PreviewNews/PreviewNews";
 const NewsList = ()=>{
 
     const [openEdit, setOpenEdit] = useState(false)
@@ -66,7 +66,7 @@ const NewsList = ()=>{
                     {
                         data.map(news =>(
                             <NewsListItem  
-                            key={news._id} 
+                            key={news.id} 
                             news={news}
                             setOpenEdit={setOpenEdit}
                             setOpenPreview={setOpenPreview}

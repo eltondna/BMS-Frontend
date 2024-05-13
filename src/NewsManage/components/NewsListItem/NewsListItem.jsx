@@ -12,6 +12,7 @@ import {
     useQueryClient
 } from '@tanstack/react-query';
 import { BASE_URL } from '../../../config';
+import Notification from '../../../components/Notification/Notification';
 
 const NewsListItem = ({news, setOpenEdit, setEditNews, setOpenPreview, setPreviewNews})=>{
     const queryClient = useQueryClient();
@@ -24,7 +25,7 @@ const NewsListItem = ({news, setOpenEdit, setEditNews, setOpenPreview, setPrevie
 
     // Handle news publish State
     const updatePublishState = async (publishState) => {
-        const payload = {id: news._id}
+        const payload = {id: news.id}
         payload.isPublish = news.isPublish === 1 ? 2 : 1;
         return await axios.post(BASE_URL + '/admin/news/publish',payload);
     }
@@ -41,10 +42,9 @@ const NewsListItem = ({news, setOpenEdit, setEditNews, setOpenPreview, setPrevie
         publishStatemutation.mutate();
     }
 
-
     // Handle news delete
     const deleteNews = async ()=>{
-        const payload = {id: news._id}
+        const payload = {id: news.id}
         return await axios.post(BASE_URL + '/admin/news/delete',payload);
     }
     const deleteMutation = useMutation({
@@ -58,6 +58,7 @@ const NewsListItem = ({news, setOpenEdit, setEditNews, setOpenPreview, setPrevie
     const handleDelete = (e)=>{
         e.preventDefault();
         deleteMutation.mutate();
+        Notification('刪除成功','success' )
     }
 
     // set opacity and pass in news info for display
@@ -76,7 +77,7 @@ const NewsListItem = ({news, setOpenEdit, setEditNews, setOpenPreview, setPrevie
             
             <div className='topic'>{news.title}</div>
         
-            <div className='textfield'>{newsCategory[news.category]}</div>
+            <div className='textfield'>{newsCategory[news.genre]}</div>
 
             <div className='textfield'>{FormatTime.getTime(news.editTime)}</div>
 

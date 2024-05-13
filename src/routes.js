@@ -1,8 +1,8 @@
 import Home from "./Home/Home";
-import NewsAdd from "./NewsManage/pages/NewsAdd";
-import NewsList from "./NewsManage/pages/NewsList";
-import ProductAdd from "./ProductManage/pages/ProductAdd";
-import ProductList from "./ProductManage/pages/ProductList";
+import NewsAdd from "./NewsManage/NewsAdd";
+import NewsList from "./NewsManage/NewsList";
+import ProductAdd from "./ProductManage/ProductAdd";
+import ProductList from "./ProductManage/ProductList";
 import Center from "./Center/Center";
 import { Navigate } from 'react-router-dom';
 
