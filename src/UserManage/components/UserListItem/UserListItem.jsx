@@ -62,10 +62,10 @@ const UserListItem = ({user, setOpenEdit, setEditUser })=>{
             </div>
             <div className="field">
                 {user.id !== currentUser.id &&
-                <>
+                <div className="operation">
                     <button className="edit" onClick={()=>handleEdit()}>{t('edit')}</button>
                     <button className="remove" onClick={handleRemove}>{t('delete')}</button>
-                </>
+                </div>
                 }
             </div>
         </div>

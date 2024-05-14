@@ -1,7 +1,7 @@
 .navbar{
+    flex:7;
     display: flex;
     flex-direction: row;
-    width: 75vw;
     background: linear-gradient(to left,#A5A4CB ,#8989BB);
     align-items: center;
     justify-content: space-between;
@@ -12,10 +12,10 @@
     p{
         padding: 0px 50px;
         font-size: 18px;
-        font-weight: bold;
-        
+        font-weight: bold;  
     }
     .pop{
+        width: 10%;
         display: flex;
         position: relative;
         width: 100px;
@@ -32,9 +32,10 @@
             display: flex;
             flex-direction: column;
             position: absolute;
+            background: #000;
             top: 30px;
-            width: 100px;
-            left: 0.5;
+            width: 100%;
+            height: 100%;
             background-color:transparent ;
             border-top: none;
             cursor: pointer;

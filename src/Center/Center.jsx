@@ -92,8 +92,10 @@ const Center = ()=>{
                                 ? <img src= {BASE_URL + '/'+ currentUser.avatar} alt="Profile Pic"/>
                                 : <PhotoCameraFrontRoundedIcon className='icon'/>
                             }
-                            <h3>{currentUser.username}  {currentUser.profile}</h3>
-                            <h4>{t('admin')}</h4>
+                            <div className="info">
+                                <h4>{currentUser.username}</h4>
+                                <h4 className='role'>{t('admin')}</h4>
+                            </div>
                         </div>
                     </div>
 
@@ -144,8 +146,11 @@ const Center = ()=>{
                         </div>
 
                         <div className="field">
-                            <label htmlFor="profilePic"></label>
+                            <label htmlFor=""></label>
+                            <div className='submitBtn'>
                             <button className='submit' onClick={handleClick}>{t('update')}</button>
+
+                            </div>
                         </div>
 
                     </div>

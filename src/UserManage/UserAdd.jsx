@@ -113,14 +113,15 @@ const UserAdd = ()=>{
                                     value={state.password}/>
                         </div>
                         <div className="field">
-                                <label htmlFor="role">{t('role')}</label>
-                                <select className='select' name='role'
-                                onChange={(e)=>{dispatch({type: 'SET_ROLE', payload: e.target.value})}}
-                                value={state.role}>
-                                    <option value={0} >{t('select')}</option>
-                                    <option value={1}>{t('admin')}</option>
-                                    <option value={2}>{t('editor')}</option>
-                                </select>
+                        <label htmlFor="role">{t('role')}</label>
+                            <select className='select' 
+                                    name='role'
+                                    onChange={(e)=>{dispatch({type: 'SET_ROLE', payload: e.target.value})}}
+                                    value={state.role}>
+                                <option value={0} >{t('select')}</option>
+                                <option value={1}>{t('admin')}</option>
+                                <option value={2}>{t('editor')}</option>
+                            </select>
                         </div>
                         <div className="field">
                                 <label htmlFor="introduction">{t('introduction')}</label>
