@@ -1,4 +1,4 @@
-import './Center.scss'
+import './Center.scss';
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 import PhotoCameraFrontRoundedIcon from '@mui/icons-material/PhotoCameraFrontRounded';
 import { useState, useContext } from 'react';
@@ -11,6 +11,8 @@ import {
 } from '@tanstack/react-query'
 import Notification from '../components/Notification/Notification';
 import { UserContext } from '../App';
+import { useTranslation } from 'react-i18next';
+
 
 
 const Center = ()=>{
@@ -20,7 +22,7 @@ const Center = ()=>{
     const [introduction, setIntroduction] = useState(currentUser.introduction ? currentUser.introduction: '')
     const [imageURL, setImageURL] = useState("")
     const [filePath, setFilePath] = useState('')
-    const queryClient = useQueryClient();
+    const {t} = useTranslation()
     
     // Upload Action
     const updateProfileAction = async()=>{
@@ -47,7 +49,6 @@ const Center = ()=>{
             handleUserUpdate(res.data.data)
         },
     })
-
     // handle Submit Action
     const handleClick = async ()=>{
         if (username === ''){
@@ -76,10 +77,10 @@ const Center = ()=>{
             <div className="container">
                 <div className="top">
                     <div className="first">
-                        企業門戶網站管理系統
+                        {t('BMS')}
                     </div>
                     <div style={{color: '#DDD'}}> | </div>
-                    <div className="last">個人配置</div>
+                    <div className="last">{t('personal_config')}</div>
                 </div>
 
                 <div className="main">
@@ -92,18 +93,18 @@ const Center = ()=>{
                                 : <PhotoCameraFrontRoundedIcon className='icon'/>
                             }
                             <h3>{currentUser.username}  {currentUser.profile}</h3>
-                            <h4>管理員</h4>
+                            <h4>{t('admin')}</h4>
                         </div>
                     </div>
 
                     <div className="right">
                     <div className="infoFiller">
-                        <h2>個人資訊</h2>
+                        <h2>{t('personal_info')}</h2>
                         
                         <hr />
 
                         <div className="field">
-                            <label htmlFor="username">用户名</label>
+                            <label htmlFor="username">{t('username')}</label>
                             <input type="text" name="username" 
                             placeholder="Username..."
                             onChange={(e) => setUsername(e.target.value)}
@@ -111,18 +112,18 @@ const Center = ()=>{
                         </div>
 
                         <div className="field">
-                            <label htmlFor="gender">性别</label>
+                            <label htmlFor="gender">{t('gender')}</label>
                             <select className='select' 
                                     onChange={(e)=>handleGender(e)} 
                                     value={gender}>
-                                <option value={0}>保密</option>
-                                <option value={1}>男性</option>
-                                <option value={2}>女性</option>
+                                <option value={0}>{t('not_to_say')}</option>
+                                <option value={1}>{t('male')}</option>
+                                <option value={2}>{t('female')}</option>
                             </select>
                         </div>
 
                         <div className="field">
-                            <label htmlFor="introduction">個人簡介</label>
+                            <label htmlFor="introduction">{t('introduction')}</label>
                             <textarea name="introduction" className='intro' 
                             placeholder="..."
                             value={introduction}
@@ -130,7 +131,7 @@ const Center = ()=>{
                         </div>
 
                         <div className="field">
-                            <label htmlFor="profilePic">頭像</label>
+                            <label htmlFor="profilePic">{t('avatar')}</label>
                             <div className='PicUpload'>
                                 {
                                     imageURL === '' 
@@ -144,7 +145,7 @@ const Center = ()=>{
 
                         <div className="field">
                             <label htmlFor="profilePic"></label>
-                            <button className='submit' onClick={handleClick}>更新</button>
+                            <button className='submit' onClick={handleClick}>{t('update')}</button>
                         </div>
 
                     </div>

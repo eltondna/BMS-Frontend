@@ -10,9 +10,10 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import axios from 'axios';
 import { BASE_URL } from '../../../config';
 import Notification from '../../../components/Notification/Notification';
+
 const ProductListItem = ({product, setOpenEdit, setEditProduct})=>{
     const queryClient = useQueryClient();
-
+    
     const handleEdit = ()=>{
         setOpenEdit(true);
         setEditProduct(product);

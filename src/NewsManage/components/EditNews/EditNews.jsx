@@ -9,6 +9,7 @@ import {
     useMutation,
     useQueryClient
 } from '@tanstack/react-query'
+import { useTranslation } from "react-i18next";
 
 const EditNews = ({news, setOpenEdit})=>{
     const [title, setTitle] = useState(news.title)
@@ -17,6 +18,9 @@ const EditNews = ({news, setOpenEdit})=>{
     const [imageURL, setImageURL] = useState('');
     const [filePath, setFilePath] = useState('');
     const queryClient = useQueryClient();
+    const {t} = useTranslation();
+
+
     const editNews = async()=>{
         const formData = new FormData()
         formData.append('id', news.id);
@@ -64,35 +68,35 @@ const EditNews = ({news, setOpenEdit})=>{
     return(
         <div className="editnews">
             <div className="header">
-                <div>編輯新闻</div>
+                <div>{t('edit_news')}</div>
                 <CancelIcon className='icon' onClick={()=>{setOpenEdit(false)}}/>
             </div>
             
             <div className="textEditor">
                     <div className="field">
-                        <label>標題</label>
+                        <label>{t('title')}</label>
                         <input type="text" placeholder="Title..." value={title} onChange={(e)=> setTitle(e.target.value)}/>
                     </div>
 
                     <div className="field"> 
-                        <label htmlFor="content">內容</label>
+                        <label htmlFor="content">{t('content')}</label>
                         <div className="content">
                             <ReactQuill theme="snow" value={content} onChange={setContent} />
                         </div>
                     </div>
 
                     <div className="field">
-                        <label htmlFor="select">類型</label>
+                        <label htmlFor="select">{t('genre')}</label>
                         <select className='select' value={genre} onChange={(e) => setGenre(Number(e.target.value))}>
-                            <option value={0}>選擇</option>
-                            <option value={1}>最新動態</option>
-                            <option value={2}>典型案例</option>
-                            <option value={2}>通知公告</option>
+                            <option value={0}>{t('select')}</option>
+                            <option value={1}>{t('latest_news')}</option>
+                            <option value={2}>{t('typical_case')}</option>
+                            <option value={2}>{t('announcement')}</option>
                         </select>
                     </div>
 
                     <div className="field">
-                        <label htmlFor="profilePic">封面</label>
+                        <label htmlFor="profilePic">{t('cover')}</label>
                         <div className='PicUpload'>
                             <input type='file' onChange={(e)=> displayImage(e.target.files[0])}/>
                             {
@@ -105,7 +109,7 @@ const EditNews = ({news, setOpenEdit})=>{
 
                     <div className="field">
                             <label htmlFor="profilePic"></label>
-                            <button className='submit' onClick={handleClick}>編輯新闻</button>
+                            <button className='submit' onClick={handleClick}>{t('edit_news')}</button>
                     </div>
                 </div>
         </div>

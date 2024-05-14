@@ -9,11 +9,13 @@ import {
 } from '@tanstack/react-query'
 import EditUser from "./components/EditUser/EditUser";
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 
 const UserList = ()=>{
     const [openEdit, setOpenEdit] = useState(false)
     const [editUser, setEditUser] = useState('');
+    const {t} = useTranslation();
     
     const { isPending, isError, data, error } = useQuery({
         queryKey: ['userAll'],
@@ -39,18 +41,18 @@ const UserList = ()=>{
 
                 <div className="top">
                     <div className="first">
-                        用户管理
+                    {t('user_manage')}
                     </div>
                     <div style={{color: '#DDD'}}> | </div>
-                    <div className="last">用户列表</div>
+                    <div className="last">{t('user_list')}</div>
                 </div>    
 
                 <div className="list">
                     <div className="column">
-                        <div  className="field">用户名</div>
-                        <div  className="field">頭像</div>
-                        <div  className="field">角色</div>
-                        <div  className="field">操作</div>
+                        <div  className="field">{t('username')}</div>
+                        <div  className="field">{t('avatar')}</div>
+                        <div  className="field">{t('role')}</div>
+                        <div  className="field">{t('operation')}</div>
                     </div>
 
                     <div className="row">

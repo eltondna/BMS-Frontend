@@ -7,6 +7,7 @@ import {
     useMutation,
 } from '@tanstack/react-query'
 import Notification from "../components/Notification/Notification";
+import { useTranslation } from "react-i18next";
 
 const ProductAdd = ()=>{
     const [name, setName] = useState("");
@@ -14,6 +15,8 @@ const ProductAdd = ()=>{
     const [description, setDescription] = useState("");
     const [imageURL, setImageURL] = useState("");
     const [filePath, setFilePath] = useState("");
+    const {t} = useTranslation();
+
 
     function displayImage(file) {
         if (!file){
@@ -79,17 +82,17 @@ const ProductAdd = ()=>{
 
             <div className="top">
                 <div className="first">
-                    產品管理
+                    {t('product_manage')}
                 </div>
                 <div style={{color: '#DDD'}}> | </div>
-                <div className="last">添加產品</div>
+                <div className="last">{t('add_product')}</div>
             </div>
 
             <div className="main">
                 <div className="infoFiller">
                     
                     <div className="field">
-                        <label htmlFor="prorrt65">產品名稱</label>
+                        <label htmlFor="prorrt65">{t('product_name')}</label>
                         <input type="text" name="product_name" 
                             placeholder="Product Name . . . "
                             onChange={(e) => setName(e.target.value)}
@@ -98,7 +101,7 @@ const ProductAdd = ()=>{
                     </div>
 
                     <div className="field">
-                        <label htmlFor="title">產品簡要</label>
+                        <label htmlFor="title">{t('product_brief')}</label>
                         <input type="text" name="title" 
                         placeholder="Product Brief . . . "
                         onChange={(e) => setBrief(e.target.value)}
@@ -106,7 +109,7 @@ const ProductAdd = ()=>{
                     </div>
 
                     <div className="field">
-                        <label htmlFor="description">產品詳細</label>
+                        <label htmlFor="description">{t('product_desc')}</label>
                         <textarea type="text" name="description" 
                             placeholder="Description. . . "
                             onChange={(e) => setDescription(e.target.value)}
@@ -116,7 +119,7 @@ const ProductAdd = ()=>{
                     </div>
 
                     <div className="field">
-                        <label htmlFor="profilePic">頭像</label>
+                        <label htmlFor="profilePic">{t('product_cover')}</label>
                         <div className='PicUpload'>
                             {
                                 imageURL === '' 
@@ -131,7 +134,7 @@ const ProductAdd = ()=>{
 
                     <div className="field ">
                         <label htmlFor="profilePic"></label>
-                        <button className='submit' onClick={handleClick}> 添加產品 </button>
+                        <button className='submit' onClick={handleClick}> {t('add_product')} </button>
                     </div>
 
                 </div>

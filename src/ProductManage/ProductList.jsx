@@ -7,10 +7,12 @@ import { BASE_URL } from '../config';
 import ProductListItem from "./components/ProductListItem/ProductListItem"
 import "./ProductList.scss"
 import EditProduct from "./components/EditProduct/EditProduct"
+import { useTranslation } from 'react-i18next';
 
 const ProductList = ()=>{
     const [openEdit, setOpenEdit] = useState(false);
     const [editProduct, setEditProduct] = useState('');
+    const {t} = useTranslation();
 
     const { isPending, isError, data, error } = useQuery({
         queryKey: ['productAll'],
@@ -34,18 +36,18 @@ const ProductList = ()=>{
                 }
                 <div className="top">
                     <div className="first">
-                        產品管理
+                        {t('product_manage')}
                         </div>
                         <div style={{color: '#DDD'}}> | </div>
-                        <div className="last">產品列表</div>
+                        <div className="last">{t('product_list')}</div>
                 </div>
 
                 <div className="main">
                     <div className="column">
-                            <div  className="field">產品名稱</div>
-                            <div  className="field">產品簡要</div>
-                            <div  className="field">編輯時間</div>
-                            <div  className="field">操作</div>
+                            <div  className="field">{t('product_name')}</div>
+                            <div  className="field">{t('product_brief')}</div>
+                            <div  className="field">{t('editTime')}</div>
+                            <div  className="field">{t('operation')}</div>
                     </div>
 
                 {

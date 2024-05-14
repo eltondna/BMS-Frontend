@@ -13,14 +13,16 @@ import {
 } from '@tanstack/react-query';
 import { BASE_URL } from '../../../config';
 import Notification from '../../../components/Notification/Notification';
+import { useTranslation } from 'react-i18next';
 
 const NewsListItem = ({news, setOpenEdit, setEditNews, setOpenPreview, setPreviewNews})=>{
     const queryClient = useQueryClient();
+    const {t} = useTranslation();
     
     const newsCategory = {
-        1: '最新動態',
-        2: '典型案例',
-        3: '通知公告'
+        1: t('latest_news'),
+        2: t('typical_case'),
+        3: t('announcement')
     }
 
     // Handle news publish State
@@ -70,7 +72,6 @@ const NewsListItem = ({news, setOpenEdit, setEditNews, setOpenPreview, setPrevie
         setOpenEdit(true);
         setEditNews(news);
     }
-
 
     return (
         <div className="newslistItem">

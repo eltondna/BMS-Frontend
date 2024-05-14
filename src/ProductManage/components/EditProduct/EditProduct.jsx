@@ -8,12 +8,15 @@ import {
     useMutation,
     useQueryClient
 } from '@tanstack/react-query'
+import { useTranslation } from "react-i18next";
 const EditProduct =({setOpenEdit, product})=>{
     const [name, setName] = useState(product.name);
     const [brief, setBrief]=  useState(product.brief);
     const [description, setDescription] = useState(product.description);
     const [imageURL, setImageURL] = useState('');
     const [filePath, setFilePath] = useState('');
+
+    const {t} = useTranslation();
     const queryClient = useQueryClient()
 
     
@@ -69,23 +72,23 @@ const EditProduct =({setOpenEdit, product})=>{
         <div className="editproduct">
 
               <div className="header">
-                <div>編輯新闻</div>
+                <div>{t('edit_product')}</div>
                 <CancelIcon className='icon' onClick={()=>{setOpenEdit(false)}}/>
               </div>
             
             <div className="textEditor">
                     <div className="field">
-                        <label>產品名稱</label>
+                        <label>{t('product_name')}</label>
                         <input type="text" placeholder="Name ..." value={name} onChange={(e)=> setName(e.target.value)}/>
                     </div>
 
                     <div className="field">
-                        <label>產品介紹</label>
+                        <label>{t('product_brief')}</label>
                         <input type="text" placeholder="Brief ..." value={brief} onChange={(e)=> setBrief(e.target.value)}/>
                     </div>
 
                     <div className="xl-field"> 
-                            <label htmlFor="content">產品描述</label>
+                            <label htmlFor="content">{t('product_desc')}</label>
                             <textarea className='content' 
                             value={description}
                             onChange={(e)=> setDescription(e.target.value)} > 
@@ -93,7 +96,7 @@ const EditProduct =({setOpenEdit, product})=>{
                     </div>
 
                     <div className="pic-field">
-                        <label htmlFor="profilePic">封面</label>
+                        <label htmlFor="profilePic">{t('product_cover')}</label>
                         <div className='PicUpload'>
                             <input type='file' onChange={(e)=> displayImage(e.target.files[0])}/>
                             {
@@ -106,7 +109,7 @@ const EditProduct =({setOpenEdit, product})=>{
 
                     <div className="field">
                             <label htmlFor="profilePic"></label>
-                            <button className='submit' onClick={handleClick}>編輯新闻</button>
+                            <button className='submit' onClick={handleClick}>{t('edit_product')}</button>
                     </div>
                 </div>
         </div>

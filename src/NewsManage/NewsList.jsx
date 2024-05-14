@@ -2,21 +2,22 @@ import { BASE_URL } from "../config";
 import axios from "axios";
 import "./NewsList.scss";
 import {
-    useMutation,
-    useQueryClient,
     useQuery
 } from '@tanstack/react-query'
 import NewsListItem from "./components/NewsListItem/NewsListItem";
 import EditNews from "./components/EditNews/EditNews";
 import { useState } from "react";
 import PreviewNews from "./components/PreviewNews/PreviewNews";
+import { useTranslation } from "react-i18next";
 const NewsList = ()=>{
 
     const [openEdit, setOpenEdit] = useState(false)
     const [editNews, setEditNews] = useState('');
     const [openPreview, setOpenPreview] = useState(false)
-    const [previewNews, setPreviewNews] = useState('');
-    
+    const [previewNews, setPreviewNews] = useState('')
+    const {t} = useTranslation();
+
+
     const { isPending, isError, data, error } = useQuery({
         queryKey: ['newsAll'],
         queryFn: async ()=>{
@@ -48,20 +49,20 @@ const NewsList = ()=>{
                 <div className="top">
 
                     <div className="first">
-                        新聞管理
+                        {t('news_manage')}
                      </div>
 
                     <div style={{color: '#DDD'}}> | </div>
-                    <div className="last">新聞列表</div>
+                    <div className="last"> {t('news_list')}</div>
                 </div>
              
                 <div className="main">
                     <div className="column">
-                        <div  className="xlarge-field">標題</div>
-                        <div  className="field">類型</div>
-                        <div  className="field">更新時間</div>
-                        <div  className="field">是否發佈</div>
-                        <div  className="large-field">動作</div>
+                        <div  className="xlarge-field"> {t('title')}</div>
+                        <div  className="field"> {t('genre')}</div>
+                        <div  className="field"> {t('editTime')}</div>
+                        <div  className="field"> {t('isPublish')}</div>
+                        <div  className="large-field"> {t('Operation')}</div>
                     </div>
                     {
                         data.map(news =>(

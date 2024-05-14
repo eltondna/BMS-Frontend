@@ -4,9 +4,11 @@ import { useState, useContext, useReducer } from 'react';
 import axios from 'axios'
 import {BASE_URL} from "../config";
 import Notification from '../components/Notification/Notification';
+import { useTranslation } from 'react-i18next';
 
 const UserAdd = ()=>{
     const [imageURL, setImageURL] = useState('')
+    const {t} = useTranslation();
     const defaultState = {
         username: '',
         password: '',
@@ -86,17 +88,17 @@ const UserAdd = ()=>{
             <div className='container'>
                 <div className="top">
                     <div className="first">
-                        用户管理
+                        {t('user_manage')}
                     </div>
                     <div style={{color: '#DDD'}}> | </div>
-                    <div className="last">添加用户</div>
+                    <div className="last">{t('add_user')}</div>
                 </div>
 
 
                 <div className="main">
                     <div className="infoFiller">
                         <div className="field">
-                                    <label htmlFor="username">用户名</label>
+                                    <label htmlFor="username">{t('username')}</label>
                                     <input type="text" name="username" 
                                     placeholder="Username . . . "
                                     onChange={(e) => {dispatch({type: 'SET_USERNAME', payload: e.target.value})}}
@@ -104,24 +106,24 @@ const UserAdd = ()=>{
                         </div>
 
                         <div className="field">
-                                    <label htmlFor="password">密码</label>
+                                    <label htmlFor="password">{t('password')}</label>
                                     <input type="text" name="password" 
                                     placeholder="Password . . ."
                                     onChange={(e) => {dispatch({type: 'SET_PASSWORD', payload: e.target.value})}}
                                     value={state.password}/>
                         </div>
                         <div className="field">
-                                <label htmlFor="role">角色</label>
+                                <label htmlFor="role">{t('role')}</label>
                                 <select className='select' name='role'
                                 onChange={(e)=>{dispatch({type: 'SET_ROLE', payload: e.target.value})}}
                                 value={state.role}>
-                                    <option value={0} >選擇</option>
-                                    <option value={1}>管理員</option>
-                                    <option value={2}>編輯</option>
+                                    <option value={0} >{t('select')}</option>
+                                    <option value={1}>{t('admin')}</option>
+                                    <option value={2}>{t('editor')}</option>
                                 </select>
                         </div>
                         <div className="field">
-                                <label htmlFor="introduction">個人簡介</label>
+                                <label htmlFor="introduction">{t('introduction')}</label>
                                 <textarea name="introduction" 
                                 className='intro' 
                                 placeholder="..."
@@ -130,7 +132,7 @@ const UserAdd = ()=>{
                         </div>
 
                         <div className="field">
-                                <label htmlFor="profilePic">頭像</label>
+                                <label htmlFor="profilePic">{t('avatar')}</label>
                                 <div className='PicUpload'>
                                     {
                                         imageURL === '' 
@@ -145,7 +147,7 @@ const UserAdd = ()=>{
 
                         <div className="field">
                             <label htmlFor="profilePic"></label>
-                            <button className='submit' onClick={handleClick}>添加用户</button>
+                            <button className='submit' onClick={handleClick}>{t('add_user')}</button>
                         </div>
 
                     </div>

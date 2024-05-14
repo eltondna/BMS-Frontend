@@ -6,6 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 import Notification from '../components/Notification/Notification';
 import axios from 'axios';
 import { BASE_URL } from '../config';
+import { useTranslation } from 'react-i18next';
 
 const NewsAdd = ()=>{
     const [title, setTitle] = useState('');
@@ -13,6 +14,8 @@ const NewsAdd = ()=>{
     const [imageURL, setImageURL] = useState('');
     const [filePath, setFilePath] = useState('');
     const [type, setType] = useState(0);
+    const {t} = useTranslation();
+
 
 
     const handleClick = async ()=>{
@@ -80,36 +83,44 @@ const NewsAdd = ()=>{
             <div className="container">
                 <div className="top">
                     <div className="first">
-                            新聞管理
+                            {t('news_manage')}
                         </div>
                         <div style={{color: '#DDD'}}> | </div>
-                        <div className="last">創建新聞</div>
+                        <div className="last">{t('add_news')}</div>
                     </div>
                 <div className="textEditor">
                     <div className="field">
-                        <label>標題</label>
+                        <label>{t('title')}</label>
                         <input type="text" placeholder="Title..." value={title} onChange={(e)=> setTitle(e.target.value)}/>
                     </div>
 
                     <div className="field"> 
-                        <label htmlFor="content">內容</label>
+                        <label htmlFor="content">{t('content')}</label>
                         <div className="content">
                             <ReactQuill theme="snow" value={newsContent} onChange={setNewsContent} />
                         </div>
                     </div>
                     <div className="field">
-                        <label htmlFor="select">類型</label>
+                        <label htmlFor="select">{t('genre')}</label>
                         <select className='select' value={type} onChange={(e) => setType(e.target.value)}>
-                            <option value={0}>選擇</option>
-                            <option value={1}>最新動態</option>
-                            <option value={2}>典型案例</option>
-                            <option value={2}>通知公告</option>
+                            <option value={0}>
+                                {t('select')}
+                            </option>
+                            <option value={1}>
+                                {t('latest_news')}
+                            </option>
+                            <option value={2}>
+                                {t('typical_case')}
+                            </option>
+                            <option value={2}>
+                                {t('announcement')}
+                            </option>
                         </select>
                     </div>
 
 
                     <div className="field">
-                        <label htmlFor="profilePic">封面</label>
+                        <label htmlFor="profilePic">{t('cover')}</label>
                         <div className='PicUpload'>
                             {
                                 imageURL === '' 
@@ -123,7 +134,7 @@ const NewsAdd = ()=>{
                     </div>
                     <div className="field">
                             <label htmlFor="profilePic"></label>
-                            <button className='submit' onClick={handleClick}>創建新聞</button>
+                            <button className='submit' onClick={handleClick}>{t('add_news')}</button>
                     </div>
                 </div>
             </div>

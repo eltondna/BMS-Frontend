@@ -10,9 +10,13 @@ import {
 } from '@tanstack/react-query'
 
 import Notification from "../../../components/Notification/Notification";
+import { useTranslation } from "react-i18next";
 const UserListItem = ({user, setOpenEdit, setEditUser })=>{
     const {currentUser} = useContext(UserContext)
     const queryClient = useQueryClient();
+    const {t} = useTranslation()
+
+
     const RemoveUser = async()=>{
         const payload = {
             id: user.id
@@ -52,15 +56,15 @@ const UserListItem = ({user, setOpenEdit, setEditUser })=>{
             <div className="field">
                 {
                     user.role === 1
-                    ? <button className="admin">管理員</button>
-                    : <button className="editor">編輯</button>
+                    ? <button className="admin">{t('admin')}</button>
+                    : <button className="editor">{t('editor')}</button>
                 }
             </div>
             <div className="field">
                 {user.id !== currentUser.id &&
                 <>
-                    <button className="edit" onClick={()=>handleEdit()}>編輯</button>
-                    <button className="remove" onClick={handleRemove}>删除</button>
+                    <button className="edit" onClick={()=>handleEdit()}>{t('edit')}</button>
+                    <button className="remove" onClick={handleRemove}>{t('delete')}</button>
                 </>
                 }
             </div>

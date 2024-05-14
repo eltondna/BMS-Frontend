@@ -10,11 +10,13 @@ import { useNavigate } from "react-router-dom";
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import { UserContext } from '../../App';
+import { useTranslation } from "react-i18next";
 const LeftBar = ()=>{
     const { currentUser } = useContext(UserContext);
     const [userTab, setUserTab] = useState(false);
     const [productTab, setProductTab] = useState(false);
     const [newsTab, setnewsTab] = useState(false);
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     const handleNavigate = (path)=>{
@@ -38,13 +40,13 @@ const LeftBar = ()=>{
 
                     <div className="info">
                         <HomeRoundedIcon/>
-                        <span>主页</span>
+                        <span>{t('home')}</span>
                     </div>
                 </div>
                 <div className="column" onClick={()=>handleNavigate("/center")}>
                     <div className="info">
                         <AssignmentIndOutlinedIcon/>
-                        <span>個人配置</span>
+                        <span>{t('personal_config')}</span>
                     </div>
                 </div>            
                 <br></br>
@@ -55,7 +57,7 @@ const LeftBar = ()=>{
                 <div className="column" onClick={()=>setUserTab(!userTab)}>
                     <div className="info">
                         <AccountCircleOutlinedIcon/>
-                        <span >用户管理</span>
+                        <span >{t('user_manage')}</span>
                     </div>
                     <div className="arrow">
                         {userTab 
@@ -71,11 +73,11 @@ const LeftBar = ()=>{
                         <>
                         <div className="subcolumn" 
                             onClick={()=>handleNavigate("/user-manage/addusers")}>
-                            <span>添加用户</span>
+                            <span>{t('add_user')}</span>
                         </div>
                         <div className="subcolumn" 
                             onClick={()=>handleNavigate( "/user-manage/listusers") }>
-                            <span>用户列表</span>
+                            <span>{t('user_list')}</span>
                         </div>
                         </>  
                     }
@@ -84,7 +86,7 @@ const LeftBar = ()=>{
                     
                     <div className="info">
                         <NewspaperOutlinedIcon/>
-                        <span>新聞管理</span>
+                        <span>{t('news_manage')}</span>
                     </div>
 
                     <div className="arrow">
@@ -98,10 +100,10 @@ const LeftBar = ()=>{
                     {newsTab &&
                         <>
                         <div className="subcolumn" onClick={()=>handleNavigate("/news-manage/addnews")}>
-                            <span>創建新聞</span>
+                            <span>{t('add_news')}</span>
                         </div>
                         <div className="subcolumn" onClick={()=>handleNavigate("/news-manage/listnews")}>
-                            <span>新聞列表</span>
+                            <span>{t('news_list')}</span>
                         </div>
                         </>  
                     }
@@ -109,7 +111,7 @@ const LeftBar = ()=>{
                 <div className="column" onClick={()=>setProductTab(!productTab)}>
                     <div className="info">
                         <MenuBookOutlinedIcon/>
-                        <span>產品管理</span>
+                        <span>{t('product_manage')}</span>
                     </div>
                     <div className="arrow">
                         {productTab 
@@ -122,10 +124,10 @@ const LeftBar = ()=>{
                     {productTab &&
                     <>
                         <div className="subcolumn" onClick={()=>handleNavigate("/product-manage/addproducts")}>
-                            <span>添加產品</span>
+                            <span>{t('add_product')}</span>
                         </div>
                         <div className="subcolumn-last" onClick={()=>handleNavigate("/product-manage/listproducts")}>
-                            <span>產品列表</span>
+                            <span>{t('Product List')}</span>
                         </div>
                     </>  
                     }

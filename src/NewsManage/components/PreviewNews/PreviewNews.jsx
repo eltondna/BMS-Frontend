@@ -3,11 +3,14 @@ import parse from 'html-react-parser';
 import moment from 'moment'
 import StarsIcon from '@mui/icons-material/Stars';
 import CancelIcon from '@mui/icons-material/Cancel';
-const PreviewNews = ({news, setOpenPreview})=>{    const newsElement = parse(news.content);
+import { useTranslation } from 'react-i18next';
+const PreviewNews = ({news, setOpenPreview})=>{   
+    const {t} = useTranslation();
+    const newsElement = parse(news.content);
     return (
         <div className="previewnews">
             <div className="header">
-                <div>預覽新闻</div>
+                <div>{t('news_preview')}</div>
                 <CancelIcon className='icon' onClick={()=>{setOpenPreview(false)}}/>
             </div>
             <div className="title">

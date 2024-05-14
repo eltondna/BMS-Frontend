@@ -3,17 +3,6 @@
 .center{
     height: calc(100vh - 120px);
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    ::-webkit-scrollbar{
-        width: 5px;
-        position: absolute;
-    }
-    ::-webkit-scrollbar-thumb{
-        background-color: #8989BB;
-    }
-
-    ::-webkit-scrollbar-track{
-        background-color: #D2CCCC;
-    }
     .container{
         display: flex;
         flex-direction: column;

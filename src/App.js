@@ -14,7 +14,7 @@ import { useState, createContext, useEffect } from "react";
 import { ToastContainer } from 'react-toastify';
 import UserAdd from "./UserManage/UserAdd";
 import UserList from "./UserManage/UserList";
-
+import "../src/i18n/i18next"
 export const UserContext = createContext();
 function App() {
   const queryClient = new QueryClient()

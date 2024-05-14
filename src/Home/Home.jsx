@@ -5,17 +5,20 @@ import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import Carousal from "@itseasy21/react-elastic-carousel";
 import { useContext } from 'react';
 import { UserContext } from '../App';
+import { useTranslation } from 'react-i18next';
 const Home = ()=>{
     const { currentUser } = useContext(UserContext);
+    const { t } = useTranslation();
+
     return (
         <div className="home">
             <div className='container'>
                 <div className="top">
                     <div className="first">
-                        企業門戶網站管理系統
+                        {t('BMS')}
                     </div>
                     <div style={{color: '#DDD'}}> | </div>
-                    <div className="last">主页</div>
+                    <div className="last">{t('home')}</div>
                 </div>
 
                 <div className="middle">
@@ -23,14 +26,16 @@ const Home = ()=>{
                         <AccountCircleRoundedIcon className="profile"/>
 
                         <div className="message">
-                                欢迎回来， {currentUser.username} 你可能有点累了，喝杯咖啡提提神吧。
+                            {t('first_reminder')}
+                            {currentUser.username}
+                            {t('second_reminder')}
                         </div>
                     </div>
                 </div>
                 <div className="bottom">
                     <div className="box">
                         <div className="header">
-                            公司产品
+                        {t('company_product')}
                         </div>
                         <div className="slider">
                             <Carousal >
