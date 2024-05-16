@@ -127,7 +127,7 @@ const LeftBar = ()=>{
                             <span>{t('add_product')}</span>
                         </div>
                         <div className="subcolumn-last" onClick={()=>handleNavigate("/product-manage/listproducts")}>
-                            <span>{t('Product List')}</span>
+                            <span>{t('product_list')}</span>
                         </div>
                     </>  
                     }

@@ -8,15 +8,15 @@ import {
     useMutation,
     useQueryClient
 } from '@tanstack/react-query'
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 const EditProduct =({setOpenEdit, product})=>{
+
+    const {t} = useTranslation();
     const [name, setName] = useState(product.name);
     const [brief, setBrief]=  useState(product.brief);
     const [description, setDescription] = useState(product.description);
     const [imageURL, setImageURL] = useState('');
     const [filePath, setFilePath] = useState('');
-
-    const {t} = useTranslation();
     const queryClient = useQueryClient()
 
     

@@ -50,16 +50,18 @@ const ProductList = ()=>{
                             <div  className="field">{t('operation')}</div>
                     </div>
 
-                {
-                    data.map(product => (
-                        <ProductListItem
-                         key={product.id}
-                         product={product}
-                         setOpenEdit={setOpenEdit}
-                         setEditProduct={setEditProduct}
-                         />
-                    ))
-                }
+                    <div className="item">
+                    {
+                        data.map(product => (
+                            <ProductListItem
+                            key={product.id}
+                            product={product}
+                            setOpenEdit={setOpenEdit}
+                            setEditProduct={setEditProduct}
+                            />
+                        ))
+                    }
+                    </div>
                 </div>
             </div>
 

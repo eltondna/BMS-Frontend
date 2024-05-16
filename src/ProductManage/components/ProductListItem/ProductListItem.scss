@@ -12,18 +12,17 @@
     justify-content: flex-start;
     font-weight: 500;
     font-weight: bold;            
-    margin-left: 5%;
-    gap: 30px;
     .field{
         display: flex;
-        justify-content: space-around;
+        font-size: 15px;
+        font-weight: bold;
         width: 20%;
-        background-color: bisque;
+        padding-left: 5%;
     }    
     .actions{
         display: flex;
-        justify-content: space-around;
         width: 20%;
+        margin-left: 5%;
         .edit-icon{
             width: 40px;
             height: 40px;
